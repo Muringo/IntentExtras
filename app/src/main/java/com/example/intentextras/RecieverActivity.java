@@ -22,6 +22,13 @@ public class RecieverActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tvName = findViewById(R.id.tvName);
         tvAge = findViewById(R.id.tvAge);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String name = extras.getString("etName");
+            String age = extras.getString("etAge");
+            tvName.setText(name);
+            tvAge.setText(age);
+        }
     }
 }
 

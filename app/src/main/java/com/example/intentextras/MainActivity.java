@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
     EditText etName;
     EditText etAge;
     Button btnSend;
-    String name;
-    String age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,155 +23,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        etName = findViewById(R.id.etName);
-        etAge = findViewById(R.id.etAge);
         btnSend = findViewById(R.id.btnSend);
-
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                etName = findViewById(R.id.etName);
+                etAge = findViewById(R.id.etAge);
+                Intent myIntent = new Intent(getBaseContext(), ReceiverActivity.class);
+                String name = etName.getText().toString();
+                String age = etAge.getText().toString();
+                myIntent.putExtra("etName", name);
+                myIntent.putExtra("etAge", age);
+                startActivity(myIntent);
 
-                name = etName.getText().toString();
-                age = etAge.getText().toString();
 
-
-                FloatingActionButton fab = findViewById(R.id.fab);
-                fab.setOnClickListener(new View.OnClickListener() {
+                btnSend.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent());
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), RecieverActivity.class);
+                        intent.putExtra("Lucie", 16);
+                        startActivity(intent);
+                    }
+                });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            @Override
-            public boolean onCreateOptionsMenu(Menu menu) {
-                // Inflate the menu; this adds items to the action bar if it is present.
-                getMenuInflater().inflate(R.menu.menu_main, menu);
-                return true;
             }
 
-            @Override
-            public boolean onOptionsItemSelected(MenuItem item) {
-                // Handle action bar item clicks here. The action bar will
-                // automatically handle clicks on the Home/Up button, so long
-                // as you specify a parent activity in AndroidManifest.xml.
-                int id = item.getItemId();
-
-                //noinspection SimplifiableIfStatement
-                if (id == R.id.action_settings) {
-                    return true;
-                }
-
-                return super.onOptionsItemSelected(item);
-            }
         });
     }
-
 }
+
